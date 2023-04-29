@@ -7,8 +7,6 @@ local awful = require("awful")
 -- Widget and layout library
 local wibox = require("wibox")
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
 	-- buttons for the titlebar
@@ -47,4 +45,20 @@ client.connect_signal("request::titlebars", function(c)
 		},
 		layout = wibox.layout.align.horizontal,
 	})
+end)
+
+local function set_titlebar(client, s)
+	if s then
+		if client.titlebar == nil then
+			client:emit_signal("request::titlebars", "rules", {})
+		end
+		awful.titlebar.show(client)
+	else
+		awful.titlebar.hide(client)
+	end
+end
+
+--Toggle titlebar on floating status change
+client.connect_signal("property::floating", function(c)
+	set_titlebar(c, c.floating)
 end)
