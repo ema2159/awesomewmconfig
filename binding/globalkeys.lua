@@ -21,7 +21,6 @@ function _M.get()
 	local globalkeys = gears.table.join(
 		awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 
-		--   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 		-- Tag browsing
 		awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 		awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
@@ -33,11 +32,17 @@ function _M.get()
 		awful.key({ modkey }, "k", function()
 			awful.client.focus.byidx(-1)
 		end, { description = "focus previous by index", group = "client" }),
+		awful.key({ "Mod1" }, "Tab", function()
+			awful.client.focus.byidx(1)
+		end, { description = "focus next by index", group = "client" }),
+		awful.key({ "Mod1", "Shift" }, "Tab", function()
+			awful.client.focus.byidx(-1)
+		end, { description = "focus previous by index", group = "client" }),
+
 		awful.key({ modkey }, "w", function()
 			RC.mainmenu:show()
 		end, { description = "show main menu", group = "awesome" }),
 
-		--   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 		-- Layout manipulation
 		awful.key({ modkey, "Shift" }, "j", function()
 			awful.client.swap.byidx(1)
@@ -64,7 +69,6 @@ function _M.get()
 			end
 		end, { description = "go back", group = "client" }),
 
-		--   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 		-- Standard program
 		awful.key({ modkey }, "Return", function()
 			awful.spawn(terminal)
@@ -72,7 +76,6 @@ function _M.get()
 		awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 		awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
 
-		--   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 		-- Layout manipulation
 		awful.key({ modkey }, "l", function()
 			awful.tag.incmwfact(0.05)
@@ -107,7 +110,6 @@ function _M.get()
 			end
 		end, { description = "restore minimized", group = "client" }),
 
-		--   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 		-- Prompt
 		awful.key({ modkey }, "r", function()
 			awful.screen.focused().mypromptbox:run()
@@ -122,10 +124,7 @@ function _M.get()
 			})
 		end, { description = "lua execute prompt", group = "awesome" }),
 
-		--   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 		-- Resize
-		--awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize( 20,  20, -40, -40) end),
-		--awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize(-20, -20,  40,  40) end),
 		awful.key({ modkey, "Control" }, "Down", function()
 			awful.client.moveresize(0, 0, 0, -20)
 		end),
