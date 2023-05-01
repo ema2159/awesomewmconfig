@@ -25,7 +25,6 @@ require("main.error-handling")
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.wallpaper = RC.vars.wallpaper
 
-modkey = RC.vars.modkey
 -- Set gaps
 beautiful.gap_single_client = true
 beautiful.useless_gap = 5
@@ -51,8 +50,8 @@ local binding = {
 -- {{{ Layouts
 -- Table of layouts to cover with awful.layout.inc, order matters.
 -- a variable needed in main.tags, and statusbar
--- awful.layout.layouts = { ... }
 RC.layouts = main.layouts()
+awful.layout.layouts = RC.layouts
 -- }}}
 
 -- {{{ Tags
