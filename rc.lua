@@ -95,3 +95,7 @@ awful.rules.rules = main.rules(binding.clientkeys(), binding.clientbuttons())
 -- {{{ Signals
 require("main.signals")
 -- }}}
+
+-- {{{ Picom
+require("main.picom")
+-- }}}
