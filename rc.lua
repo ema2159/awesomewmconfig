@@ -24,9 +24,12 @@ require("main.error-handling")
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.wallpaper = RC.vars.wallpaper
--- }}}
 
 modkey = RC.vars.modkey
+-- Set gaps
+beautiful.gap_single_client = true
+beautiful.useless_gap = 5
+-- }}}
 
 -- Custom Local Library
 local main = {
