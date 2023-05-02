@@ -4,8 +4,9 @@
 local gears = require("gears")
 local awful = require("awful")
 
--- Widget and layout library
+local beautiful = require("beautiful")
 local wibox = require("wibox")
+local dpi = beautiful.xresources.apply_dpi
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
@@ -21,10 +22,12 @@ client.connect_signal("request::titlebars", function(c)
 		end)
 	)
 
-	awful.titlebar(c):setup({
+  pos = "top"
+  bg = "#00000099"
+  size = beautiful.titlebar_size
+
+	awful.titlebar(c, { position = pos, bg = bg, size = size }):setup({
 		{ -- Left
-			awful.titlebar.widget.iconwidget(c),
-			buttons = buttons,
 			layout = wibox.layout.fixed.horizontal,
 		},
 		{ -- Middle
@@ -36,11 +39,10 @@ client.connect_signal("request::titlebars", function(c)
 			layout = wibox.layout.flex.horizontal,
 		},
 		{ -- Right
-			awful.titlebar.widget.floatingbutton(c),
+			awful.titlebar.widget.minimizebutton(c),
 			awful.titlebar.widget.maximizedbutton(c),
-			awful.titlebar.widget.stickybutton(c),
-			awful.titlebar.widget.ontopbutton(c),
 			awful.titlebar.widget.closebutton(c),
+      spacing = dpi(7),
 			layout = wibox.layout.fixed.horizontal(),
 		},
 		layout = wibox.layout.align.horizontal,
