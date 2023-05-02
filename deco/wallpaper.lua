@@ -28,7 +28,7 @@ local wallpaper_list = scan_dir("/home/ema2159/Pictures/ArtWP/")
 gears.wallpaper.maximized(wallpaper_list[math.random(1, #wallpaper_list)], s, true)
 
 -- Apply a random wallpaper every changeTime seconds.
-local change_time = 300
+local change_time = 600
 local wallpaper_timer = timer({ timeout = change_time })
 wallpaper_timer:connect_signal("timeout", function()
 	gears.wallpaper.maximized(wallpaper_list[math.random(1, #wallpaper_list)], s, true)
